@@ -9,5 +9,85 @@
   </head>
   <body>
     <div id="root"></div>
+    <style>
+      .typewriter-cursor::after {
+        content: '|';
+        animation: blink-cursor 0.7s step-end infinite;
+        color: rgba(0,0,0,0.4);
+        font-weight: 300;
+        margin-left: 1px;
+      }
+      @keyframes blink-cursor {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+    </style>
+    <script>
+      (function() {
+        let lastText = '';
+        let typingTimer = null;
+        let isTyping = false;
+
+        function typeText(el, fullText) {
+          if (typingTimer) { clearInterval(typingTimer); typingTimer = null; }
+          isTyping = true;
+          const quote = '"';
+          // Strip surrounding quotes if present
+          let text = fullText;
+          if (text.startsWith('"') || text.startsWith('\u00ab')) text = text.slice(1);
+          if (text.endsWith('"') || text.endsWith('\u00bb')) text = text.slice(0, -1);
+
+          el.textContent = '\u00ab';
+          el.classList.add('typewriter-cursor');
+          let i = 0;
+          const speed = Math.max(15, Math.min(40, 8000 / text.length));
+          typingTimer = setInterval(function() {
+            if (i < text.length) {
+              el.textContent = '\u00ab' + text.slice(0, i + 1);
+              i++;
+            } else {
+              clearInterval(typingTimer);
+              typingTimer = null;
+              el.textContent = '\u00ab' + text + '\u00bb';
+              el.classList.remove('typewriter-cursor');
+              isTyping = false;
+            }
+          }, speed);
+        }
+
+        function init() {
+          const section = document.getElementById('testimonials');
+          if (!section) { setTimeout(init, 500); return; }
+
+          const quoteEl = section.querySelector('.min-h-\\[100px\\] p, .min-h-\\[80px\\] p');
+          if (!quoteEl) { setTimeout(init, 500); return; }
+
+          // Watch for text changes using MutationObserver
+          const container = quoteEl.parentElement;
+          const observer = new MutationObserver(function() {
+            const p = container.querySelector('p');
+            if (!p) return;
+            const currentText = p.textContent;
+            if (currentText && currentText !== lastText && !isTyping) {
+              lastText = currentText;
+              typeText(p, currentText);
+            }
+          });
+          observer.observe(container, { childList: true, subtree: true, characterData: true });
+
+          // Initial typewriter on first load
+          if (quoteEl.textContent) {
+            lastText = quoteEl.textContent;
+            typeText(quoteEl, quoteEl.textContent);
+          }
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() { setTimeout(init, 1000); });
+        } else {
+          setTimeout(init, 1000);
+        }
+      })();
+    </script>
   </body>
 </html>
