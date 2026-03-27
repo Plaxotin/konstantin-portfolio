@@ -171,7 +171,7 @@ export const portfolioConfig: PortfolioConfig = {
       images: ["./images/43.png", "./images/photo-4.jpg", "./images/portfolio-1b.jpg", "./images/portfolio-1c.jpg"],
       featured: true,
       link: "https://rfrit.ru/novaya_gornaya",
-      linkLabel: "Подробнее на сайте РФРИТ",
+      linkLabel: "Подробнее",
       industry: "Угледобывающая промышленность",
     },
     {

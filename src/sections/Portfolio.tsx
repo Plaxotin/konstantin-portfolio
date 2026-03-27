@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation, useStaggerAnimation } from '@/hooks/useScrollAnimation';
-import { ArrowUpRight, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { portfolioConfig } from '@/config';
 
 function ProjectCard({ project, index, isVisible }: { project: { title: string; category: string; year: string; image: string; images?: string[]; featured?: boolean; link?: string; linkLabel?: string; industry?: string }; index: number; isVisible: boolean }) {
@@ -86,21 +86,6 @@ function ProjectCard({ project, index, isVisible }: { project: { title: string; 
           </>
         )}
 
-        {/* Link Button - only this element triggers the link */}
-        {project.link && project.linkLabel && (
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="px-4 py-2 bg-white/95 backdrop-blur-sm rounded-full flex items-center gap-2 hover:bg-white transition-colors">
-              <ExternalLink className="w-4 h-4 text-exvia-black" />
-              <span className="text-sm font-medium text-exvia-black">{project.linkLabel}</span>
-            </div>
-          </a>
-        )}
 
         {/* Arrow Icon - shows on hover for non-link projects without multiple images */}
         {!project.link && images.length === 1 && (
@@ -114,9 +99,22 @@ function ProjectCard({ project, index, isVisible }: { project: { title: string; 
 
       {/* Project Info */}
       <div className="mt-3 space-y-1">
-        <h3 className="text-base font-semibold text-exvia-black group-hover:text-exvia-black/80 transition-colors leading-tight">
-          {project.title}
-        </h3>
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="text-base font-semibold text-exvia-black group-hover:text-exvia-black/80 transition-colors leading-tight">
+            {project.title}
+          </h3>
+          {project.link && project.linkLabel && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-exvia-black/60 hover:text-exvia-black transition-colors whitespace-nowrap flex-shrink-0"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {project.linkLabel}
+            </a>
+          )}
+        </div>
         <p className="text-sm text-exvia-black/50 truncate">{project.category}</p>
       </div>
     </div>
