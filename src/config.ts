@@ -41,7 +41,7 @@ export interface HeroConfig {
 export const heroConfig: HeroConfig = {
   name: "КОНСТАНТИН\nПЛАХОТИН",
   roles: [
-    "Цифровая трансформация",
+    "Эксперт по цифровой трансформации",
     "Проектное лидерство",
     "Обучение и менторство"
   ],
@@ -79,9 +79,7 @@ export const aboutConfig: AboutConfig = {
     { value: "4", label: "ОТРАСЛИ" },
   ],
   images: [
-    { src: "/images/photo-1.jpg", alt: "Константин Плахотин" },
     { src: "/images/photo-3.jpg", alt: "Выступление на семинаре" },
-    { src: "/images/photo-4.jpg", alt: "На производстве" },
     { src: "/images/photo-6.jpg", alt: "На конференции" },
   ],
 };
@@ -108,19 +106,19 @@ export const servicesConfig: ServicesConfig = {
       iconName: "Monitor",
       title: "Цифровая трансформация",
       description: "Внедрение решений BI, ERP, MES, APS, AI, OT/SCADA. Создание цифровой стратегии развития. Реинжиниринг бизнес-процессов без остановки производства.",
-      image: "/images/service-1.jpg",
+      image: "/images/transformation2.png",
     },
     {
       iconName: "Layout",
       title: "Управление проектами",
       description: "Управление мультивендорными программами цифровизации, выстраивание доверительных отношений с заказчиком, стабилизация проектов в кризисе. Команды до 200+ специалистов.",
-      image: "/images/service-2.jpg",
+      image: "/images/istockphoto-861911620-612x612.jpg",
     },
     {
       iconName: "TrendingUp",
       title: "Операционная эффективность",
       description: "Увеличение производительности, оптимизация производства и логистики, повышение эффективности и прозрачности бизнес-процессов, сокращение операционных затрат.",
-      image: "/images/service-3.jpg",
+      image: "/images/Dashbord.png",
     },
     {
       iconName: "Users",
@@ -169,34 +167,33 @@ export const portfolioConfig: PortfolioConfig = {
       title: "Внедрение MES для угледобывающей компании",
       category: "Производство, Горнодобывающая промышленность",
       year: "2024",
-      image: "/images/portfolio-1.jpg",
-      images: ["/images/portfolio-1.jpg", "/images/portfolio-1b.jpg", "/images/portfolio-1c.jpg"],
+      image: "/images/43.png",
+      images: ["/images/43.png", "/images/photo-4.jpg", "/images/portfolio-1b.jpg", "/images/portfolio-1c.jpg"],
       featured: true,
       link: "https://rfrit.ru/novaya_gornaya",
       linkLabel: "Подробнее на сайте РФРИТ",
       industry: "Угледобывающая промышленность",
     },
     {
-      title: "SAP S/4HANA для одной из крупнейших мировых вертикально интегрированных нефтегазовых компаний",
+      title: "Переход на SAP S/4HANA для одной из крупнейших нефтегазовых компаний РФ",
       category: "Нефтегазовая отрасль",
       year: "2023",
-      image: "/images/portfolio-2.jpg",
+      image: "/images/42.jpg",
       industry: "Нефтегазовая отрасль",
     },
     {
-      title: "Оптимизация логистики на базе 1С и SAP для крупнейшего золотодобытчика в России",
+      title: "Оптимизация логистики на 4-х основных активах крупнейшего золотодобытчика РФ на базе 1С и SAP",
       category: "Логистика, Золотодобывающая промышленность",
       year: "2021",
-      image: "/images/portfolio-3a.jpg",
-      images: ["/images/portfolio-3a.jpg", "/images/portfolio-3b.jpg", "/images/portfolio-3c.jpg"],
+      image: "/images/polus-logistics.jpg",
       industry: "Золотодобывающая промышленность",
     },
     {
       title: "Развитие и масштабирование сервиса логистики ПЭК:EASYWAY",
       category: "Логистика, E-commerce",
       year: "2020",
-      image: "/images/portfolio-4.jpg",
-      images: ["/images/portfolio-4.jpg", "/images/portfolio-4b.jpg"],
+      image: "/images/portfolio-4b.jpg",
+      images: ["/images/portfolio-4b.jpg", "/images/portfolio-4.jpg"],
       industry: "Логистика, E-commerce",
     },
   ],
@@ -284,8 +281,8 @@ export interface CTAConfig {
 }
 
 export const ctaConfig: CTAConfig = {
-  tags: ["Digital Transformation Expert", "Project Leader", "Speaker"],
-  heading: "Готов обсудить ваш проект",
+  tags: ["Руководитель цифровой трансформации", "Управление программами и проектами", "Эксперт-спикер"],
+  heading: "Открыт для сотрудничества",
   description: "",
   buttonText: "Связаться со мной",
   buttonHref: "mailto:plaxotin9@gmail.com",
