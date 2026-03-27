@@ -86,20 +86,38 @@ export function About() {
           {/* Right Column - Image Grid */}
           {aboutConfig.images.length > 0 && (
             <div ref={imagesRef} className="grid grid-cols-2 gap-4">
-              {aboutConfig.images.map((image, index) => (
+              {/* First image - large, spans full height on left */}
+              {aboutConfig.images[0] && (
                 <div
-                  key={index}
                   className={cn(
-                    'relative overflow-hidden transition-all duration-700 ease-out-quart',
-                    index % 2 === 1 ? 'mt-8' : '',
-                    visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    'relative overflow-hidden transition-all duration-700 ease-out-quart row-span-2',
+                    visibleItems[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   )}
                 >
-                  <div className="aspect-[3/4] relative group cursor-pointer overflow-hidden rounded-lg">
+                  <div className="aspect-[3/4] h-full relative group cursor-pointer overflow-hidden rounded-lg">
+                    <img
+                      src={aboutConfig.images[0].src}
+                      alt={aboutConfig.images[0].alt}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 ease-out-quad group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-exvia-black/0 group-hover:bg-exvia-black/10 transition-colors duration-300" />
+                  </div>
+                </div>
+              )}
+              {/* Second and third images - stacked on right */}
+              {aboutConfig.images.slice(1).map((image, index) => (
+                <div
+                  key={index + 1}
+                  className={cn(
+                    'relative overflow-hidden transition-all duration-700 ease-out-quart',
+                    visibleItems[index + 1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  )}
+                >
+                  <div className="aspect-[4/3] relative group cursor-pointer overflow-hidden rounded-lg">
                     <img
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full object-cover object-top transition-transform duration-500 ease-out-quad group-hover:scale-105"
+                      className="w-full h-full object-cover object-center transition-transform duration-500 ease-out-quad group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-exvia-black/0 group-hover:bg-exvia-black/10 transition-colors duration-300" />
                   </div>

@@ -79,6 +79,7 @@ export const aboutConfig: AboutConfig = {
     { value: "4", label: "ОТРАСЛИ" },
   ],
   images: [
+    { src: "./images/photo-4.jpg", alt: "На производстве" },
     { src: "./images/photo-3.jpg", alt: "Выступление на семинаре" },
     { src: "./images/photo-6.jpg", alt: "На конференции" },
   ],
