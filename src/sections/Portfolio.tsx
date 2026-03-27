@@ -171,7 +171,7 @@ export function Portfolio() {
         </div>
 
         {/* Projects Grid - 3 columns in one row */}
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-4 gap-4 lg:gap-6">
           {portfolioConfig.projects.map((project, index) => (
             <ProjectCard
               key={project.title}
