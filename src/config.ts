@@ -318,7 +318,7 @@ export interface FooterConfig {
 
 export const footerConfig: FooterConfig = {
   logo: "К.ПЛАХОТИН",
-  description: "Руководитель по цифровой трансформации. Помогаю компаниям внедрять технологические решения.",
+  description: "Помогаю компаниям внедрять технологические решения.",
   columns: [
     {
       title: "Навигация",
