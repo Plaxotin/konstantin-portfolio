@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation, useStaggerAnimation } from '@/hooks/useScrollAnimation';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { portfolioConfig } from '@/config';
+import { useLanguage } from '@/i18n';
+import { OptimizedImage } from '@/components/OptimizedImage';
 
 function ProjectCard({ project, index, isVisible }: { project: { title: string; category: string; year: string; image: string; images?: string[]; featured?: boolean; link?: string; linkLabel?: string; industry?: string }; index: number; isVisible: boolean }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -31,10 +32,11 @@ function ProjectCard({ project, index, isVisible }: { project: { title: string; 
     >
       <div className="relative overflow-hidden bg-exvia-subtle rounded-lg">
         <div className="aspect-[16/10]">
-          <img
+          <OptimizedImage
             src={currentImage}
             alt={project.title}
             className="w-full h-full object-cover transition-transform duration-700 ease-out-cubic group-hover:scale-105"
+            containerClassName="w-full h-full"
           />
         </div>
 
@@ -122,17 +124,16 @@ function ProjectCard({ project, index, isVisible }: { project: { title: string; 
 }
 
 export function Portfolio() {
-  if (!portfolioConfig.heading && portfolioConfig.projects.length === 0) return null;
-
+  const { t } = useLanguage();
+  
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.3 });
-  const { containerRef: gridRef, visibleItems } = useStaggerAnimation(portfolioConfig.projects.length, 120);
+  const { containerRef: gridRef, visibleItems } = useStaggerAnimation(t.projects.length, 120);
 
   return (
     <section id="portfolio" className="w-full py-16 lg:py-20 bg-exvia-subtle/30">
       <div className="container-large px-6 lg:px-12">
-        {/* Header */}
         <div ref={headerRef} className="max-w-3xl mb-10">
-          {portfolioConfig.label && (
+          {t.portfolioLabel && (
             <div
               className={cn(
                 'transition-all duration-800 ease-out-quart',
@@ -140,12 +141,12 @@ export function Portfolio() {
               )}
             >
               <span className="text-xs font-geist-mono uppercase tracking-widest text-exvia-black/50">
-                {portfolioConfig.label}
+                {t.portfolioLabel}
               </span>
             </div>
           )}
 
-          {portfolioConfig.heading && (
+          {t.portfolioHeading && (
             <h2
               className={cn(
                 'text-h2 font-semibold text-exvia-black mt-3 transition-all duration-800 ease-out-quart',
@@ -153,11 +154,11 @@ export function Portfolio() {
               )}
               style={{ transitionDelay: '100ms' }}
             >
-              {portfolioConfig.heading}
+              {t.portfolioHeading}
             </h2>
           )}
 
-          {portfolioConfig.description && (
+          {t.portfolioDescription && (
             <p
               className={cn(
                 'mt-3 text-base text-exvia-black/60 leading-relaxed transition-all duration-800 ease-out-quart',
@@ -165,14 +166,13 @@ export function Portfolio() {
               )}
               style={{ transitionDelay: '200ms' }}
             >
-              {portfolioConfig.description}
+              {t.portfolioDescription}
             </p>
           )}
         </div>
 
-        {/* Projects Grid - 3 columns in one row */}
         <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-4 gap-4 lg:gap-6">
-          {portfolioConfig.projects.map((project, index) => (
+          {t.projects.map((project, index) => (
             <ProjectCard
               key={project.title}
               project={project}

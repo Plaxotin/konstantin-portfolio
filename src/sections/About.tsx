@@ -1,22 +1,20 @@
-import { } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation, useStaggerAnimation } from '@/hooks/useScrollAnimation';
-import { aboutConfig } from '@/config';
+import { useLanguage } from '@/i18n';
+import { OptimizedImage } from '@/components/OptimizedImage';
 
 export function About() {
-  if (!aboutConfig.description && aboutConfig.stats.length === 0 && aboutConfig.images.length === 0) return null;
-
+  const { t } = useLanguage();
+  
   const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation({ threshold: 0.2 });
-  const { containerRef: imagesRef, visibleItems } = useStaggerAnimation(aboutConfig.images.length || 4, 150);
+  const { containerRef: imagesRef, visibleItems } = useStaggerAnimation(t.aboutImages.length || 4, 150);
 
   return (
     <section id="about" className="w-full py-16 lg:py-24 bg-white">
       <div className="container-large px-6 lg:px-12">
         <div ref={sectionRef} className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          {/* Left Column - Text Content */}
           <div className="space-y-8">
-            {/* Section Label */}
-            {aboutConfig.label && (
+            {t.aboutLabel && (
               <div
                 className={cn(
                   'transition-all duration-800 ease-out-quart',
@@ -24,13 +22,12 @@ export function About() {
                 )}
               >
                 <span className="text-xs font-geist-mono uppercase tracking-widest text-exvia-black/50">
-                  {aboutConfig.label}
+                  {t.aboutLabel}
                 </span>
               </div>
             )}
 
-            {/* Main Text */}
-            {aboutConfig.description && (
+            {t.aboutDescription && (
               <div
                 className={cn(
                   'transition-all duration-800 ease-out-quart',
@@ -39,13 +36,12 @@ export function About() {
                 style={{ transitionDelay: '100ms' }}
               >
                 <p className="text-xl lg:text-2xl text-exvia-black leading-relaxed">
-                  {aboutConfig.description}
+                  {t.aboutDescription}
                 </p>
               </div>
             )}
 
-            {/* Experience Badge */}
-            {aboutConfig.experienceValue && (
+            {t.aboutExperienceValue && (
               <div
                 className={cn(
                   'flex items-end gap-3 pt-4 transition-all duration-800 ease-out-quart',
@@ -54,18 +50,17 @@ export function About() {
                 style={{ transitionDelay: '200ms' }}
               >
                 <span className="text-7xl lg:text-8xl font-black text-exvia-black leading-none">
-                  {aboutConfig.experienceValue}
+                  {t.aboutExperienceValue}
                 </span>
-                {aboutConfig.experienceLabel && (
-                  <span className="text-sm text-exvia-black/60 pb-3">
-                    {aboutConfig.experienceLabel}
+                {t.aboutExperienceLabel && (
+                  <span className="text-sm text-exvia-black/60 pb-3 whitespace-pre-line">
+                    {t.aboutExperienceLabel}
                   </span>
                 )}
               </div>
             )}
 
-            {/* Stats */}
-            {aboutConfig.stats.length > 0 && (
+            {t.aboutStats.length > 0 && (
               <div
                 className={cn(
                   'grid grid-cols-3 gap-8 pt-8 border-t border-exvia-border transition-all duration-800 ease-out-quart',
@@ -73,7 +68,7 @@ export function About() {
                 )}
                 style={{ transitionDelay: '300ms' }}
               >
-                {aboutConfig.stats.map((stat, index) => (
+                {t.aboutStats.map((stat, index) => (
                   <div key={index}>
                     <span className="block text-3xl font-semibold text-exvia-black">{stat.value}</span>
                     <span className="text-sm text-exvia-black/60">{stat.label}</span>
@@ -83,10 +78,9 @@ export function About() {
             )}
           </div>
 
-          {/* Right Column - Image Grid */}
-          {aboutConfig.images.length > 0 && (
+          {t.aboutImages.length > 0 && (
             <div ref={imagesRef} className="grid grid-cols-3 gap-4">
-              {aboutConfig.images.map((image, index) => (
+              {t.aboutImages.map((image, index) => (
                 <div
                   key={index}
                   className={cn(
@@ -95,10 +89,11 @@ export function About() {
                   )}
                 >
                   <div className="aspect-[3/4] relative group cursor-pointer overflow-hidden rounded-lg">
-                    <img
+                    <OptimizedImage
                       src={image.src}
                       alt={image.alt}
                       className="w-full h-full object-cover object-top transition-transform duration-500 ease-out-quad group-hover:scale-105"
+                      containerClassName="w-full h-full"
                     />
                     <div className="absolute inset-0 bg-exvia-black/0 group-hover:bg-exvia-black/10 transition-colors duration-300" />
                   </div>
