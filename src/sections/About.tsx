@@ -1,7 +1,7 @@
-import { } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation, useStaggerAnimation } from '@/hooks/useScrollAnimation';
 import { aboutConfig } from '@/config';
+import { OptimizedImage } from '@/components/OptimizedImage';
 
 export function About() {
   if (!aboutConfig.description && aboutConfig.stats.length === 0 && aboutConfig.images.length === 0) return null;
@@ -95,10 +95,11 @@ export function About() {
                   )}
                 >
                   <div className="aspect-[3/4] relative group cursor-pointer overflow-hidden rounded-lg">
-                    <img
+                    <OptimizedImage
                       src={image.src}
                       alt={image.alt}
                       className="w-full h-full object-cover object-top transition-transform duration-500 ease-out-quad group-hover:scale-105"
+                      containerClassName="w-full h-full"
                     />
                     <div className="absolute inset-0 bg-exvia-black/0 group-hover:bg-exvia-black/10 transition-colors duration-300" />
                   </div>

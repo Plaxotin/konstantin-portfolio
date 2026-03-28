@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { useScrollAnimation, useStaggerAnimation } from '@/hooks/useScrollAnimation';
 import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { portfolioConfig } from '@/config';
+import { OptimizedImage } from '@/components/OptimizedImage';
 
 function ProjectCard({ project, index, isVisible }: { project: { title: string; category: string; year: string; image: string; images?: string[]; featured?: boolean; link?: string; linkLabel?: string; industry?: string }; index: number; isVisible: boolean }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -31,10 +32,11 @@ function ProjectCard({ project, index, isVisible }: { project: { title: string; 
     >
       <div className="relative overflow-hidden bg-exvia-subtle rounded-lg">
         <div className="aspect-[16/10]">
-          <img
+          <OptimizedImage
             src={currentImage}
             alt={project.title}
             className="w-full h-full object-cover transition-transform duration-700 ease-out-cubic group-hover:scale-105"
+            containerClassName="w-full h-full"
           />
         </div>
 

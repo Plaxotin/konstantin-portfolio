@@ -2,11 +2,19 @@ import { type ElementType } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { servicesConfig } from '@/config';
-import * as LucideIcons from 'lucide-react';
+import { Monitor, Layout, TrendingUp, Users, Circle } from 'lucide-react';
+import { OptimizedImage } from '@/components/OptimizedImage';
+
+const iconMap: Record<string, ElementType> = {
+  Monitor,
+  Layout,
+  TrendingUp,
+  Users,
+  Circle,
+};
 
 function getIcon(iconName: string): ElementType {
-  const icons = LucideIcons as unknown as Record<string, ElementType>;
-  return icons[iconName] || LucideIcons.Circle;
+  return iconMap[iconName] || Circle;
 }
 
 interface ServiceCardProps {
@@ -20,10 +28,11 @@ function ServiceCard({ service }: ServiceCardProps) {
     <div className="group">
       {/* Static Image */}
       <div className="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
-        <img
+        <OptimizedImage
           src={service.image}
           alt={service.title}
           className="w-full h-full object-cover transition-transform duration-500 ease-out-quad group-hover:scale-105"
+          containerClassName="w-full h-full"
         />
         <div className="absolute inset-0 bg-exvia-black/0 group-hover:bg-exvia-black/10 transition-colors duration-300" />
       </div>
