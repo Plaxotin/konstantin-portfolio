@@ -1,15 +1,20 @@
 import { useState, useEffect, type MouseEvent } from 'react';
 import { cn } from '@/lib/utils';
-import { navigationConfig } from '@/config';
+import { useLanguage } from '@/i18n';
 
 export function Navigation() {
-  if (navigationConfig.links.length === 0) return null;
-
+  const { t, language, setLanguage } = useLanguage();
+  
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
+  const navLinks = [
+    { label: t.navAbout, href: '#about' },
+    { label: t.navServices, href: '#services' },
+    { label: t.navPortfolio, href: '#portfolio' },
+  ];
+
   useEffect(() => {
-    // Fade in navbar after page load
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 1800);
@@ -43,29 +48,55 @@ export function Navigation() {
       )}
     >
       <div className="w-full px-4 lg:px-12 py-4">
-        <div className="flex items-center justify-center">
-          {/* Navigation Links - visible on all screen sizes */}
-          {navigationConfig.links.length > 0 && (
-            <div className="flex items-center gap-4 lg:gap-10">
-              {navigationConfig.links.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={cn(
-                    "text-sm lg:text-base font-medium transition-colors duration-500 relative group whitespace-nowrap",
-                    isScrolled ? "text-exvia-black/80 hover:text-exvia-black" : "text-white hover:text-white/80"
-                  )}
-                >
-                  {link.label}
-                  <span className={cn(
-                    "absolute -bottom-1 left-0 w-0 h-px transition-all duration-300 group-hover:w-full",
-                    isScrolled ? "bg-exvia-black" : "bg-white"
-                  )} />
-                </a>
-              ))}
-            </div>
-          )}
+        <div className="flex items-center justify-between">
+          <div className="w-16" />
+          
+          <div className="flex items-center gap-4 lg:gap-10">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={cn(
+                  "text-sm lg:text-base font-medium transition-colors duration-500 relative group whitespace-nowrap",
+                  isScrolled ? "text-exvia-black/80 hover:text-exvia-black" : "text-white hover:text-white/80"
+                )}
+              >
+                {link.label}
+                <span className={cn(
+                  "absolute -bottom-1 left-0 w-0 h-px transition-all duration-300 group-hover:w-full",
+                  isScrolled ? "bg-exvia-black" : "bg-white"
+                )} />
+              </a>
+            ))}
+          </div>
+          
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setLanguage('ru')}
+              className={cn(
+                'px-2 py-1 text-xs font-medium rounded transition-all duration-200',
+                language === 'ru'
+                  ? isScrolled ? 'bg-exvia-black text-white' : 'bg-white text-exvia-black'
+                  : isScrolled ? 'text-exvia-black/60 hover:text-exvia-black' : 'text-white/60 hover:text-white'
+              )}
+              aria-label="Русский"
+            >
+              RU
+            </button>
+            <button
+              onClick={() => setLanguage('en')}
+              className={cn(
+                'px-2 py-1 text-xs font-medium rounded transition-all duration-200',
+                language === 'en'
+                  ? isScrolled ? 'bg-exvia-black text-white' : 'bg-white text-exvia-black'
+                  : isScrolled ? 'text-exvia-black/60 hover:text-exvia-black' : 'text-white/60 hover:text-white'
+              )}
+              aria-label="English"
+            >
+              EN
+            </button>
+          </div>
         </div>
       </div>
     </nav>

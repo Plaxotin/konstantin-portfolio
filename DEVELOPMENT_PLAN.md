@@ -103,7 +103,7 @@ Full source code has been integrated:
 - [ ] Blog/Articles section
 - [ ] Downloadable CV/Resume
 - [ ] Project case studies with detailed pages
-- [ ] Multi-language support (RU/EN)
+- [x] Multi-language support (RU/EN) ✅
 
 ### 3.3 Accessibility (a11y)
 - [ ] ARIA labels and roles audit
@@ -112,7 +112,7 @@ Full source code has been integrated:
 - [ ] Color contrast compliance (WCAG 2.1)
 
 ### 3.4 Analytics & Tracking
-- [ ] Google Analytics 4 or Plausible Analytics
+- [x] Google Analytics 4 and Plausible Analytics support ✅
 - [ ] Performance monitoring (Web Vitals)
 
 ---
@@ -177,10 +177,13 @@ Updated workflow includes:
 9. Code splitting (vendor chunks)
 10. Lucide icons tree-shaking
 11. Add favicon.svg
+12. Multi-language support (RU/EN) with language switcher
+13. Analytics integration (GA4 + Plausible)
 
 ### Short-term (Next)
 1. Contact form integration
 2. WebP image format conversion
+3. Web Vitals monitoring
 
 ### Medium-term
 1. Add analytics

@@ -1,7 +1,7 @@
 import { type ElementType } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { servicesConfig } from '@/config';
+import { useLanguage } from '@/i18n';
 import { Monitor, Layout, TrendingUp, Users, Circle } from 'lucide-react';
 import { OptimizedImage } from '@/components/OptimizedImage';
 
@@ -26,7 +26,6 @@ function ServiceCard({ service }: ServiceCardProps) {
 
   return (
     <div className="group">
-      {/* Static Image */}
       <div className="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
         <OptimizedImage
           src={service.image}
@@ -37,7 +36,6 @@ function ServiceCard({ service }: ServiceCardProps) {
         <div className="absolute inset-0 bg-exvia-black/0 group-hover:bg-exvia-black/10 transition-colors duration-300" />
       </div>
 
-      {/* Content */}
       <div className="space-y-2">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center border border-exvia-border rounded-lg bg-white flex-shrink-0">
@@ -54,17 +52,16 @@ function ServiceCard({ service }: ServiceCardProps) {
 }
 
 export function Services() {
-  if (!servicesConfig.heading && servicesConfig.services.length === 0) return null;
-
+  const { t } = useLanguage();
+  
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.3 });
   const { ref: servicesRef, isVisible: servicesVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
     <section id="services" className="w-full py-16 lg:py-20 bg-white">
       <div className="container-large px-6 lg:px-12">
-        {/* Header */}
         <div ref={headerRef} className="max-w-2xl mb-10">
-          {servicesConfig.label && (
+          {t.servicesLabel && (
             <div
               className={cn(
                 'transition-all duration-800 ease-out-quart',
@@ -72,12 +69,12 @@ export function Services() {
               )}
             >
               <span className="text-xs font-geist-mono uppercase tracking-widest text-exvia-black/50">
-                {servicesConfig.label}
+                {t.servicesLabel}
               </span>
             </div>
           )}
 
-          {servicesConfig.heading && (
+          {t.servicesHeading && (
             <h2
               className={cn(
                 'text-h2 font-semibold text-exvia-black mt-3 transition-all duration-800 ease-out-quart',
@@ -85,13 +82,12 @@ export function Services() {
               )}
               style={{ transitionDelay: '100ms' }}
             >
-              {servicesConfig.heading}
+              {t.servicesHeading}
             </h2>
           )}
         </div>
 
-        {/* Services Grid - 4 columns in one row */}
-        {servicesConfig.services.length > 0 && (
+        {t.services.length > 0 && (
           <div
             ref={servicesRef}
             className={cn(
@@ -99,7 +95,7 @@ export function Services() {
               servicesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             )}
           >
-            {servicesConfig.services.map((service) => (
+            {t.services.map((service) => (
               <ServiceCard key={service.title} service={service} />
             ))}
           </div>

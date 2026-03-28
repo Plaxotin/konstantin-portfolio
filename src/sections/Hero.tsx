@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { heroConfig } from '@/config';
+import { useLanguage } from '@/i18n';
 
 export function Hero() {
-  if (!heroConfig.name && heroConfig.roles.length === 0) return null;
-
+  const { t } = useLanguage();
+  
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -19,10 +19,8 @@ export function Hero() {
       id="hero"
       className="relative w-full min-h-[90vh] lg:min-h-[80vh] overflow-hidden bg-[#0A2540]"
     >
-      {/* Clean background with subtle gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0A2540] via-[#0d2f4f] to-[#0A2540]" />
       
-      {/* Subtle pattern overlay */}
       <div 
         className="absolute inset-0 opacity-5"
         style={{
@@ -31,9 +29,7 @@ export function Hero() {
         }}
       />
 
-      {/* Content Container */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[90vh] lg:min-h-[80vh] px-6 lg:px-12 pt-24 pb-20">
-        {/* Main Heading */}
         <div
           className={cn(
             'text-center transition-all duration-1000 ease-out',
@@ -42,11 +38,10 @@ export function Hero() {
           style={{ transitionDelay: '200ms' }}
         >
           <h1 className="text-[clamp(2rem,8vw,6rem)] font-black text-white tracking-[-0.03em] leading-[0.95] whitespace-pre-line">
-            {heroConfig.name}
+            {t.heroName}
           </h1>
         </div>
 
-        {/* Subtitle */}
         <div
           className={cn(
             'mt-6 lg:mt-8 text-center transition-all duration-700',
@@ -55,11 +50,10 @@ export function Hero() {
           style={{ transitionDelay: '400ms' }}
         >
           <p className="text-base lg:text-xl text-white/70 max-w-3xl">
-            Формирую устойчивые проектные команды, внедряю корпоративные ИТ-решения, реализую масштабные цифровые инициативы для крупного бизнеса.
+            {t.heroSubtitle}
           </p>
         </div>
 
-        {/* Scroll indicator */}
         <div 
           className={cn(
             'mt-10 lg:mt-12 transition-all duration-700',
@@ -72,7 +66,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Role labels */}
         <div 
           className={cn(
             'mt-8 lg:mt-10 flex flex-wrap justify-center gap-2 lg:gap-3 transition-all duration-700',
@@ -80,7 +73,7 @@ export function Hero() {
           )}
           style={{ transitionDelay: '800ms' }}
         >
-          {heroConfig.roles.slice(0, 4).map((role, index) => (
+          {t.heroRoles.slice(0, 4).map((role, index) => (
             <span 
               key={index}
               className="px-3 py-1.5 text-[10px] lg:text-xs font-geist-mono uppercase tracking-[0.1em] text-white/50 border border-white/15 rounded-full"
