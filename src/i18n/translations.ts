@@ -133,7 +133,7 @@ export const translations: Record<Language, Translations> = {
       {
         iconName: "TrendingUp",
         title: "Операционная эффективность",
-        description: "Увеличение производительности, оптимизация производства и логистики, повышение эффективности и прозрачности бизнес-процессов, сокращение операционных затрат.",
+        description: "Рост производительности, повышение качества и снижение затрат за счёт автоматизации и реинжиниринга бизнес-процессов. Создание новых продуктов и улучшение клиентского опыта.",
         image: "./images/Dashbord.png",
       },
       {
@@ -302,7 +302,7 @@ export const translations: Record<Language, Translations> = {
       {
         iconName: "TrendingUp",
         title: "Operational Efficiency",
-        description: "Productivity improvement, manufacturing and logistics optimization, enhancing business process efficiency and transparency, reducing operational costs.",
+        description: "Productivity growth, quality improvement and cost reduction through automation and business process reengineering. Creating new products and enhancing customer experience.",
         image: "./images/Dashbord.png",
       },
       {
