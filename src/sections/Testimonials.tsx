@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import { testimonialsConfig } from '@/config';
+import { useLanguage } from '@/i18n';
 
 export function Testimonials() {
-  if (!testimonialsConfig.heading && testimonialsConfig.testimonials.length === 0) return null;
-
-  const testimonials = testimonialsConfig.testimonials;
+  const { t } = useLanguage();
+  const testimonials = t.testimonials;
+  
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
@@ -29,7 +29,6 @@ export function Testimonials() {
     goToSlide((activeIndex - 1 + testimonials.length) % testimonials.length);
   }, [activeIndex, goToSlide, testimonials.length]);
 
-  // Auto-advance slides
   useEffect(() => {
     if (testimonials.length === 0) return;
     const interval = setInterval(nextSlide, 6000);
@@ -43,9 +42,8 @@ export function Testimonials() {
   return (
     <section id="testimonials" className="w-full py-16 lg:py-24 bg-white">
       <div ref={sectionRef} className="container-large px-6 lg:px-12">
-        {/* Header */}
         <div className="max-w-2xl mb-10">
-          {testimonialsConfig.label && (
+          {t.testimonialsLabel && (
             <div
               className={cn(
                 'transition-all duration-800 ease-out-quart',
@@ -53,12 +51,12 @@ export function Testimonials() {
               )}
             >
               <span className="text-xs font-geist-mono uppercase tracking-widest text-exvia-black/50">
-                {testimonialsConfig.label}
+                {t.testimonialsLabel}
               </span>
             </div>
           )}
 
-          {testimonialsConfig.heading && (
+          {t.testimonialsHeading && (
             <h2
               className={cn(
                 'text-h2 font-semibold text-exvia-black mt-4 transition-all duration-800 ease-out-quart',
@@ -66,7 +64,7 @@ export function Testimonials() {
               )}
               style={{ transitionDelay: '100ms' }}
             >
-              {testimonialsConfig.heading}
+              {t.testimonialsHeading}
             </h2>
           )}
         </div>

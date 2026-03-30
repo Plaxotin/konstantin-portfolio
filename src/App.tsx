@@ -1,4 +1,3 @@
-import { } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { PageOverlay } from '@/components/PageOverlay';
 import { Hero } from '@/sections/Hero';
@@ -9,19 +8,16 @@ import { Testimonials } from '@/sections/Testimonials';
 import { CTA } from '@/sections/CTA';
 import { Footer } from '@/sections/Footer';
 import { usePageLoad } from '@/hooks/usePageLoad';
+import { Analytics } from '@/analytics';
 
 function App() {
   const { showOverlay } = usePageLoad(500);
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Page Load Overlay */}
+      <Analytics />
       <PageOverlay isVisible={showOverlay} />
-      
-      {/* Navigation */}
       <Navigation />
-      
-      {/* Main Content */}
       <main>
         <Hero />
         <About />
@@ -30,8 +26,6 @@ function App() {
         <Testimonials />
         <CTA />
       </main>
-      
-      {/* Footer */}
       <Footer />
     </div>
   );
