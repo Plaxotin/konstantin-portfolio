@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation, useStaggerAnimation } from '@/hooks/useScrollAnimation';
-import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/i18n';
 import { OptimizedImage } from '@/components/OptimizedImage';
 
@@ -86,16 +86,6 @@ function ProjectCard({ project, index, isVisible }: { project: { title: string; 
               ))}
             </div>
           </>
-        )}
-
-
-        {/* Arrow Icon - shows on hover for non-link projects without multiple images */}
-        {!project.link && images.length === 1 && (
-          <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              <ArrowUpRight className="w-4 h-4 text-exvia-black" />
-            </div>
-          </div>
         )}
       </div>
 
